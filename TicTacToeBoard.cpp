@@ -73,5 +73,90 @@ Piece TicTacToeBoard::getPiece(int row, int column)
 **/
 Piece TicTacToeBoard::getWinner()
 {
+  //8 Unique Win Conditions per Player
+  //1. 3 on top row
+  if(board[0][0] != empty){
+    //get piece on first spot
+    Piece checkingPiece = board[0][0];
+    if(board[1][0] == checkingPiece && board[2][0] == checkingPiece){
+      //three in a row
+      return checkingPiece;
+    }
+  }
+  //2. 3 on middle row
+  if(board[0][1] != empty){
+    //get piece on first spot
+    Piece checkingPiece = board[0][1];
+    if(board[1][1] == checkingPiece && board[2][1] == checkingPiece){
+      //three in a row
+      return checkingPiece;
+    }
+  }
+  //3. 3 on bottom row
+  if(board[0][2] != empty){
+    //get piece on first spot
+    Piece checkingPiece = board[0][2];
+    if(board[1][2] == checkingPiece && board[2][2] == checkingPiece){
+      //three in a row
+      return checkingPiece;
+    }
+  }
+  //4. 3 on left Column
+  if(board[0][0] != empty){
+    //get piece on first spot
+    Piece checkingPiece = board[0][1];
+    if(board[0][1] == checkingPiece && board[0][2] == checkingPiece){
+      //three in a row
+      return checkingPiece;
+    }
+  }
+  //5. 3 on middle Column
+  if(board[1][0] != empty){
+    //get piece on first spot
+    Piece checkingPiece = board[0][1];
+    if(board[1][1] == checkingPiece && board[1][2] == checkingPiece){
+      //three in a row
+      return checkingPiece;
+    }
+  }
+  //6. 3 on right Column
+  if(board[2][0] != empty){
+    //get piece on first spot
+    Piece checkingPiece = board[0][1];
+    if(board[2][1] == checkingPiece && board[2][2] == checkingPiece){
+      //three in a row
+      return checkingPiece;
+    }
+  }
+  //7. 3 on left Diagonal
+  if(board[0][0] != empty){
+    //get piece on first spot
+    Piece checkingPiece = board[0][1];
+    if(board[1][1] == checkingPiece && board[2][2] == checkingPiece){
+      //three in a row
+      return checkingPiece;
+    }
+  }
+  //8. 3 on Right Diagonal
+  if(board[2][0] != empty){
+    //get piece on first spot
+    Piece checkingPiece = board[0][1];
+    if(board[1][1] == checkingPiece && board[0][2] == checkingPiece){
+      //three in a row
+      return checkingPiece;
+    }
+  }
+  //at this point, there is no winner
+  bool full = true;
+  for(int i = 0; i < BOARDSIZE; i++){
+    for(int j = 0; j < BOARDSIZE; j++){
+      if(board[i][j] == Blank){
+        full = false;
+      }
+    }
+  }
+  if(full){
+    return Blank;
+  }
   return Invalid;
 }
