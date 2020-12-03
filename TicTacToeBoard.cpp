@@ -19,21 +19,40 @@ TicTacToeBoard::TicTacToeBoard()
 **/
 Piece TicTacToeBoard::toggleTurn()
 {
+  if(turn == X){
+    turn = O;
+    return turn;
+  }
+  else if(turn == O){
+    turn = X;
+    return turn;
+  }
   return Invalid;
 }
 
 /**
  * Places the piece of the current turn on the board, returns what
- * piece is placed, and toggles which Piece's turn it is. placePiece does 
+ * piece is placed, and toggles which Piece's turn it is. placePiece does
  * NOT allow to place a piece in a location where there is already a piece.
- * In that case, placePiece just returns what is already at that location. 
+ * In that case, placePiece just returns what is already at that location.
  * Out of bounds coordinates return the Piece Invalid value. When the game
  * is over, no more pieces can be placed so attempting to place a piece
  * should neither change the board nor change whose turn it is.
-**/ 
+**/
 Piece TicTacToeBoard::placePiece(int row, int column)
 {
-  return Invalid;
+  //check for out of bounds
+  if(row < 0 || row >= BOARDSIZE || column < 0 || column >= BOARDSIZE){
+    return Invalid;
+  }
+  //check to make sure place is empty
+  if(board[row][column] != Blank){
+    return Invalid;
+  }
+  Piece placed = turn;
+  board[row][column] = placed;
+  toggleTurn();
+  return placed;
 }
 
 /**
@@ -42,7 +61,10 @@ Piece TicTacToeBoard::placePiece(int row, int column)
 **/
 Piece TicTacToeBoard::getPiece(int row, int column)
 {
-  return Invalid;
+  if(row < 0 || row >= BOARDSIZE || column < 0 || column >= BOARDSIZE){
+    return Invalid;
+  }
+  return board[row][column];
 }
 
 /**
